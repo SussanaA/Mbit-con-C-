@@ -1,0 +1,75 @@
+# Assignment Microbit
+
+## Instituto Tecnológico de Tijuana
+## Carrera: Ing. Sistemas Computacionales
+## Materia: Lenguajes de interfaz
+## Nombre del alumno: Rodríguez Morales Susana Abigail
+## Número de control: 22210346
+## Descripción de la actividad:
+La actividad consiste en programar Micro:bit para conectar
+mediante puerto serial enviar datos al PC y leer datos desde
+Micro:bit
+-----------------------------------------------------
+### Programación de la Micr:bit
+####Makecode JavaScript
+let contador = 0
+input.onButtonPressed(Button.A, function () {
+    contador += 1
+    basic.showNumber(contador)
+    serial.writeLine(contador.toString())
+})
+
+----------------------------------------------------------------
+### Código en C#
+using System;
+using System.IO.Ports;
+
+namespace MicrobitSerialReader
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Configurar el puerto serial
+            SerialPort puertoSerial = new SerialPort();
+
+            // Establecer el nombre del puerto (verificar en el Administrador de dispositivos)
+            puertoSerial.PortName = "COM3"; // Cambiar al puerto correspondiente
+
+            // Configurar la velocidad de baudios
+            puertoSerial.BaudRate = 115200;
+
+            // Otros parámetros del puerto serial
+            puertoSerial.Parity = Parity.None;
+            puertoSerial.DataBits = 8;
+            puertoSerial.StopBits = StopBits.One;
+            puertoSerial.Handshake = Handshake.None;
+
+            // Evento para manejar los datos recibidos
+            puertoSerial.DataReceived += new SerialDataReceivedEventHandler(DatosRecibidos);
+
+            try
+            {
+                // Abrir el puerto serial
+                puertoSerial.Open();
+                Console.WriteLine("Conexión establecida. Presiona ENTER para finalizar.");
+                Console.ReadLine();
+                // Cerrar el puerto serial al finalizar
+                puertoSerial.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al abrir el puerto serial: " + ex.Message);
+            }
+        }
+
+        private static void DatosRecibidos(object sender, SerialDataReceivedEventArgs e)
+        {
+            // Leer los datos recibidos
+            SerialPort sp = (SerialPort)sender;
+            string datos = sp.ReadLine();
+            Console.WriteLine("Datos recibidos: " + datos);
+        }
+    }
+}
+----------------------------------------------------------------
