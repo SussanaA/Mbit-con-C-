@@ -1,1 +1,14 @@
+# Assignment Microbit
 
+## Instituto Tecnológico de Tijuana
+## Carrera: Ing. Sistemas Computacionales
+## Materia: Lenguajes de interfaz
+## Nombre del alumno: Rodríguez Morales Susana Abigail
+## Número de control: 22210346
+## Descripción de la actividad:
+La actividad consiste en programar Micro:bit para conectar
+mediante puerto serial enviar datos al PC y leer datos desde
+Micro:bit
+-----------------------------------------------------
+### Programación de la Micr:bit
+####Makecode JavaScript
