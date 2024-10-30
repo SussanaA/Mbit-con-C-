@@ -1,0 +1,33 @@
+# Assignment 
+
+## Instituto Tecnológico de Tijuana
+## Carrera: Ing. Sistemas Computacionales
+## Materia: Lenguajes de interfaz
+## Nombre del alumno: Rodríguez Morales Susana Abigail
+## Número de control: 22210346
+## Descripción de la actividad:
+La actividad consiste en programar Micro:bit para conectar
+mediante puerto serial enviar datos al PC y leer datos desde
+Micro:bit
+-----------------------------------------------------
+### Código en Micropython: Transmisor
+from microbit import *
+import radio
+import utime
+
+# Inicializar la radio
+radio.on()
+radio.config(channel=7)  # Puedes elegir cualquier canal entre 0 y 83
+
+while True:
+    temp = temperature()
+    mensaje = "TEMP:" + str(temp)
+    radio.send(mensaje)
+    display.show(str(temp))
+    sleep(1000)  # Espera 1 segundo antes de la siguiente lectura
+    display.clear()
+
+----------------------------------------------------------------
+### Código equivalente en Python
+
+----------------------------------------------------------------
